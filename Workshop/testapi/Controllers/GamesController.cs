@@ -48,15 +48,24 @@ public class GamesController : ControllerBase
 		return games;
 	}
 	
-	/* [HttpDelete]
-	public IEnumerable<Game> Delete( int id)
+	[HttpDelete]
+	public IEnumerable<Game> Delete(int id)
 	{
-		// write code that deletes the game with the id sent to the API then returns a list of games
-	} */
+		games.RemoveAll(game => game.id == id);
+		return games;
+	}
 	
-	/* [HttpPost]
-	public IEnumerable<Game> AddGame( Game game)
+	[HttpPost]
+	public IEnumerable<Game> AddGame(/* Game game */int id, string teamOneName, string teamTwoName, int winner)
 	{
-		write code that adds the game posted to this route then displays the list of games
-	} */
+		games.Add(
+			new Game{
+				id = id,
+				teamOneName = teamOneName,
+				teamTwoName = teamTwoName,
+				winner = winner
+			}
+		);
+		return games;
+	}
 }
